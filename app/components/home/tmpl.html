@@ -1,0 +1,22 @@
+<h4>{{ home.title }}</h4>
+
+<div class="row">
+    <div class="col-md-12">
+      http://www.mqtt-dashboard.com/
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <table class="table table-striped">
+            <tr>
+                <th>Topic</th>
+                <th>Message</th>
+            </tr>
+            <tr ng-repeat="item in vm.topicMessages | limitTo:-10">
+                <td>{{item.topic}}</td>
+                <td>{{item.message}}</td>
+            </tr>
+        </table>
+    </div>
+</div>
