@@ -8,11 +8,18 @@ import uiRouter from 'angular-ui-router';
 // app modules.
 import Routes from './routes';
 import Components from './components';
+import Services from './services';
 
 export default angular
     .module('app', [
         uiRouter,
-        Components
+        Components,
+        Services
     ])
     .config(Routes)
+    .config($mqttProvider => {
+        $mqttProvider.configure({
+            host: 'mqtt://broker.hivemq.com:8000'
+        });
+    })
     .name;

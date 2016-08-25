@@ -1,12 +1,32 @@
-const Service = () => {
+const Service = ($mqtt) => {
     class Home {
-        constructor() {
-            this.data = {};
+        constructor(scope) {
+            this.scope = scope;
+            this.topicMessages = [];
+
+            $mqtt.client.on('message', (topic, message) => {
+                // message is Buffer
+                return this.handleMessage(topic, message);
+            });
         }
 
-        square(a, b, cb) {
-            let result = a * b;
-            cb(result);
+        subscribe(topic) {
+            $mqtt.client.subscribe(topic);
+        }
+
+        unsubscribe(topic) {
+            $mqtt.client.unsubscribe(topic);
+        }
+
+        handleMessage(topic, message) {
+            let topicMessage = {
+                topic: topic,
+                message: JSON.parse(message.toString())
+            };
+
+            this.data.topicMessages.push(topicMessage);
+
+            this.scope.$apply();
         }
     }
 
@@ -15,6 +35,5 @@ const Service = () => {
     };
 };
 
-Service.$inject = [];
-
+Service.$inject = ['$mqtt'];
 export default Service;

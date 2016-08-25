@@ -1,54 +1,28 @@
-import mqtt from 'mqtt';
-
 class HomeController {
     constructor($scope, homeService) {
         this.scope = $scope;
         this.title = 'Home Page';
-        this.homeService = new homeService.Home();
+        this.topic = 'FV/+';
 
-        this.topicMessages = [];
-
-        let client = mqtt.connect('mqtt://broker.hivemq.com:8000');
-
-        client.on('connect', function() {
-            client.subscribe('FV/+');
-        });
-
-        client.on('message', (topic, message) => {
-            // message is Buffer
-            return this.handleMessage(topic, message);
-            //client.end();
-        });
+        this.homeService = new homeService.Home($scope);
+        this.topicMessages = this.homeService.topicMessages;
 
         $scope.$on('$destroy', () => {
             console.log('You\'re destroying me!');
-            client.end();
+            this.homeService.unsubscribe(this.topic);
         });
-
     }
 
-    handleMessage(topic, message) {
-        console.log('topic: ', topic);
-
-        let topicMessage = {
-          topic: topic,
-          message: JSON.parse(message.toString())
-        };
-
-        this.topicMessages.push(topicMessage);
-
-        this.scope.$apply();
+    subscribe() {
+        if (this.topic) {
+            this.homeService.subscribe(this.topic);
+        }
     }
 
-    square() {
-        this.homeService.square(this.firstNumber, this.secondNumber, this.printResult);
-    }
-
-    printResult(result) {
-        console.log('printResult(result): ', result);
+    unsubscribe() {
+        this.homeService.unsubscribe(this.topic);
     }
 }
 
 HomeController.$inject = ['$scope', 'homeService'];
-
 export default HomeController;

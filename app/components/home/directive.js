@@ -13,5 +13,4 @@ class HomeDirective {
 }
 
 HomeDirective.$inject = [];
-
 export default HomeDirective;

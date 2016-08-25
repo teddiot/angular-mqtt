@@ -1,8 +1,18 @@
 <h4>{{ home.title }}</h4>
 
 <div class="row">
-    <div class="col-md-12">
-      http://www.mqtt-dashboard.com/
+    <div class="col-md-5">
+        Go to: http://www.mqtt-dashboard.com/ and grab a topic to subscribe to....
+    </div>
+    <div class="col-md-7">
+        <form class="form-inline">
+            <div class="form-group">
+                <label for="topicInput">Name</label>
+                <input type="text" class="form-control" id="topicInput" ng-model="vm.topic" placeholder="Topic Name">
+            </div>
+            <button type="submit" class="btn btn-success" ng-click="vm.subscribe()">Subscribe</button>
+            <button type="submit" class="btn btn-danger" ng-click="vm.unsubscribe()">Unsubscribe</button>
+        </form>
     </div>
 </div>
 

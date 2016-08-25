@@ -1,4 +1,4 @@
-const routes = ($stateProvider) => {
+const Routes = ($stateProvider) => {
     $stateProvider
         .state('home', {
             url: '/',
@@ -6,6 +6,5 @@ const routes = ($stateProvider) => {
         });
 };
 
-routes.$inject = ['$stateProvider'];
-
-export default routes;
+Routes.$inject = ['$stateProvider'];
+export default Routes;

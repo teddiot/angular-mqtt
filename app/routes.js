@@ -1,7 +1,6 @@
-const routes = ($urlRouterProvider, $locationProvider, $stateProvider) => {
+const Routes = ($urlRouterProvider, $locationProvider, $stateProvider) => {
     $urlRouterProvider.otherwise('/');
 };
 
-routes.$inject = ['$urlRouterProvider', '$locationProvider', '$stateProvider'];
-
-export default routes;
+Routes.$inject = ['$urlRouterProvider', '$locationProvider', '$stateProvider'];
+export default Routes;
