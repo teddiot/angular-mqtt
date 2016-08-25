@@ -5,10 +5,9 @@ class HomeDirective {
     constructor() {
         this.template = Template;
         this.restrict = 'EA';
-        this.scope = {};
         this.controller = Controller;
         this.controllerAs = 'vm';
-        this.bindToController = true;
+        this.bindToController = {};
     }
 }
 

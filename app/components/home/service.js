@@ -24,7 +24,7 @@ const Service = ($mqtt) => {
                 message: JSON.parse(message.toString())
             };
 
-            this.data.topicMessages.push(topicMessage);
+            this.topicMessages.push(topicMessage);
 
             this.scope.$apply();
         }
