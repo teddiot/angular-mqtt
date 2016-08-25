@@ -15,6 +15,7 @@ const Service = ($mqtt) => {
         }
 
         unsubscribe(topic) {
+            //this.topicMessages = [];
             $mqtt.client.unsubscribe(topic);
         }
 

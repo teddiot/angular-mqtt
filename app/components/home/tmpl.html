@@ -8,7 +8,7 @@
         <form class="form-inline">
             <div class="form-group">
                 <label for="topicInput">Name</label>
-                <input type="text" class="form-control" id="topicInput" ng-model="vm.topic" placeholder="Topic Name">
+                <input type="text" class="form-control" id="topicInput" ng-model="vm.topic" placeholder="Topic Name" ng-disabled="vm.subscribed">
             </div>
             <button type="submit" class="btn btn-success" ng-click="vm.subscribe()">Subscribe</button>
             <button type="submit" class="btn btn-danger" ng-click="vm.unsubscribe()">Unsubscribe</button>

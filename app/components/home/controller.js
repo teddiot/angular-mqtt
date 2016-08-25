@@ -2,7 +2,8 @@ class HomeController {
     constructor($scope, homeService) {
         this.scope = $scope;
         this.title = 'Home Page';
-        this.topic = 'FV/+';
+        this.topic = undefined;
+        this.subscribed = false;
 
         this.homeService = new homeService.Home($scope);
         this.topicMessages = this.homeService.topicMessages;
@@ -16,11 +17,15 @@ class HomeController {
     subscribe() {
         if (this.topic) {
             this.homeService.subscribe(this.topic);
+
+            this.subscribed = true;
         }
     }
 
     unsubscribe() {
         this.homeService.unsubscribe(this.topic);
+
+        this.subscribed = false;
     }
 }
 
